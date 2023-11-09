@@ -24,27 +24,38 @@ public class Note : MonoBehaviour
     private Vector3 _missedTargetPosition;
 
     private bool _isHittable;
+    public bool isHoldable;
 
     public bool isHoldNote;
     public int holdNoteEndTime;
     public TrailRenderer holdNoteTrailRenderer;
     public float holdNoteHeldTime;
+    private NoteHit _noteHit;
+
+    private void Awake()
+    {
+        _noteHit = GetComponent<NoteHit>();
+    }
 
     public void OnNoteSpawn()
     {
+        holdNoteTrailRenderer.Clear();
         _t = 0;
         _targetPosition = CalculateTargetPosition();
         _missedTargetPosition = CalculateMissedTargetPosition();
         _isHittable = true;
+        isHoldable = false;
         
         if (isHoldNote)
         {
+            _noteHit.isHoldNote = true;
             holdNoteTrailRenderer.emitting = true;
             holdNoteHeldTime = (holdNoteEndTime - noteStartTime) / 1000f;
             holdNoteTrailRenderer.time = holdNoteHeldTime;
         }
         else
         {
+            _noteHit.isHoldNote = false;
             holdNoteTrailRenderer.emitting = false;
         }
     }
@@ -71,18 +82,21 @@ public class Note : MonoBehaviour
             if (Vector3.Distance(transform.position, _targetPosition ) < 0.01f)
             {
                 _isHittable = false;
+                isHoldable = true;
             }
 
             if (!isHoldNote)
             {
                 if (Vector3.Distance(transform.position, _missedTargetPosition) < 0.01f)
                 {
+                    Debug.Log("note missed");
                     gameObject.SetActive(false);
                 } 
             }
-            else if (holdNoteEndTime > GameManager.Instance.accurateMusicTime)
+            
+            if (isHoldNote && holdNoteEndTime < GameManager.Instance.accurateMusicTime)
             {
-                Debug.Log("hold note ended");
+                isHoldable = false;
                 holdNoteTrailRenderer.emitting = false;
                 gameObject.SetActive(false);
             } 

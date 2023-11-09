@@ -21,8 +21,8 @@ public class AccurateTimeManager : MonoBehaviour
     {
         if (_isPlaying)
         {
-                sampledTime = ((audioSource.timeSamples / (float)audioSource.clip.frequency));
-                sampledTime *= 1000f;
+            sampledTime = ((audioSource.timeSamples / (float)audioSource.clip.frequency));
+            sampledTime *= 1000f;
         }
     }
 

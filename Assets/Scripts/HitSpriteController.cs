@@ -13,6 +13,7 @@ public class HitSpriteController : MonoBehaviour {
     private SpriteRenderer _hitSpriteRenderer;
 
     private NoteHit _desiredNote;
+    private Note _desiredNoteObject;
 
     void Awake() {
         _initialSprite = spriteRenderer.sprite;
@@ -25,18 +26,31 @@ public class HitSpriteController : MonoBehaviour {
             StartCoroutine(SwitchAndFade());
         }
 
-        if (_desiredNote != null)
-        {
-            if (Input.GetKeyDown(keyCode))
-            {
-                if (_desiredNote.canBePressed)
-                {
-                    GameManager.Instance.AddScore(1);
-                    SFXManager.Instance.PlaySound(1);
-                    _desiredNote.gameObject.SetActive(false);
-                }
-            }
-        }
+        // if (_desiredNote != null)
+        // {
+        //     if (_desiredNote.isHoldNote)
+        //     {
+        //         if (_desiredNoteObject.isHoldable)
+        //         {
+        //             if (Input.GetKey(keyCode))
+        //             {
+        //                 GameManager.Instance.AddScore(1f);
+        //             }
+        //         }
+        //     }
+        //     else
+        //     {
+        //         if (Input.GetKeyDown(keyCode))
+        //         {
+        //             if (_desiredNote.canBePressed)
+        //             {
+        //                 GameManager.Instance.AddScore(100f);
+        //                 SFXManager.Instance.PlaySound(1);
+        //                 _desiredNote.gameObject.SetActive(false);
+        //             }
+        //         }
+        //     }
+        // }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -44,10 +58,12 @@ public class HitSpriteController : MonoBehaviour {
         if (other.CompareTag("Note"))
         {
             _desiredNote = other.GetComponent<NoteHit>();
+           _desiredNoteObject = other.GetComponent<Note>();
         }
     }
 
-    IEnumerator SwitchAndFade() {
+    IEnumerator SwitchAndFade() 
+    {
         spriteRenderer.sprite = newSprite;
 
         float timer = 0f;
@@ -58,7 +74,8 @@ public class HitSpriteController : MonoBehaviour {
 
         timer = 0f;
 
-        while (timer < fadeDuration) {
+        while (timer < fadeDuration) 
+        {
             float alpha = Mathf.Lerp(1f, 0f, timer / fadeDuration);
             hitSpriteColor.a = alpha;
             _hitSpriteRenderer.color = hitSpriteColor;

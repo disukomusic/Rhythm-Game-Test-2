@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 52475021}
   - component: {fileID: 52475024}
   m_Layer: 0
-  m_Name: Hit 5
+  m_Name: Hit 4
   m_TagString: Activator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 52475022}
   newSprite: {fileID: 21300000, guid: e914e51858c4a2146a56eb099f59cd9c, type: 3}
   fadeDuration: 0.1
-  keyCode: 53
+  keyCode: 52
   hitSpriteObject: {fileID: 2129825094}
 --- !u!212 &52475022
 SpriteRenderer:
@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 103081443}
   - component: {fileID: 103081444}
   m_Layer: 0
-  m_Name: Hit 1
+  m_Name: Hit 8
   m_TagString: Activator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -371,7 +371,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 103081441}
   newSprite: {fileID: 21300000, guid: e914e51858c4a2146a56eb099f59cd9c, type: 3}
   fadeDuration: 0.1
-  keyCode: 49
+  keyCode: 56
   hitSpriteObject: {fileID: 1917288370}
 --- !u!68 &103081444
 EdgeCollider2D:
@@ -474,8 +474,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: ARTIST NAME
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ce019398020fa32458ccef7ce672d566, type: 2}
+  m_sharedMaterial: {fileID: -8529713623459097665, guid: ce019398020fa32458ccef7ce672d566, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -562,7 +562,7 @@ GameObject:
   - component: {fileID: 208312774}
   - component: {fileID: 208312777}
   m_Layer: 0
-  m_Name: Hit 6
+  m_Name: Hit 3
   m_TagString: Activator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -583,7 +583,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 208312775}
   newSprite: {fileID: 21300000, guid: e914e51858c4a2146a56eb099f59cd9c, type: 3}
   fadeDuration: 0.1
-  keyCode: 54
+  keyCode: 51
   hitSpriteObject: {fileID: 2052614159}
 --- !u!212 &208312775
 SpriteRenderer:
@@ -779,54 +779,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1896940061}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &268878961
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 268878963}
-  - component: {fileID: 268878962}
-  m_Layer: 0
-  m_Name: AccurateTimeManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &268878962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 268878961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22565de4ca54ea145ace19486a9d4b85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bpm: 110
-  audioSource: {fileID: 1000605774}
-  osuParser: {fileID: 1583279298}
-  sampledTime: 0
---- !u!4 &268878963
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 268878961}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.7420585, y: -1.7741871, z: 13.074739}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &273055532
 GameObject:
   m_ObjectHideFlags: 0
@@ -886,7 +838,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dd048a08454dcce4fbde429864cd34d2, type: 3}
-  m_Color: {r: 0.4811321, g: 0.2246796, b: 0.43181422, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -941,7 +893,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1069,7 +1021,7 @@ GameObject:
   - component: {fileID: 430823584}
   - component: {fileID: 430823587}
   m_Layer: 0
-  m_Name: Hit 3
+  m_Name: Hit 6
   m_TagString: Activator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1090,7 +1042,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 430823585}
   newSprite: {fileID: 21300000, guid: e914e51858c4a2146a56eb099f59cd9c, type: 3}
   fadeDuration: 0.1
-  keyCode: 51
+  keyCode: 54
   hitSpriteObject: {fileID: 1944059473}
 --- !u!212 &430823585
 SpriteRenderer:
@@ -1436,7 +1388,7 @@ GameObject:
   - component: {fileID: 557590066}
   - component: {fileID: 557590069}
   m_Layer: 0
-  m_Name: Hit 2
+  m_Name: Hit 7
   m_TagString: Activator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1457,7 +1409,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 557590067}
   newSprite: {fileID: 21300000, guid: e914e51858c4a2146a56eb099f59cd9c, type: 3}
   fadeDuration: 0.1
-  keyCode: 50
+  keyCode: 55
   hitSpriteObject: {fileID: 1110036399}
 --- !u!212 &557590067
 SpriteRenderer:
@@ -1664,7 +1616,7 @@ GameObject:
   - component: {fileID: 646879213}
   - component: {fileID: 646879216}
   m_Layer: 0
-  m_Name: Hit 4
+  m_Name: Hit 5
   m_TagString: Activator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1685,7 +1637,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 646879214}
   newSprite: {fileID: 21300000, guid: e914e51858c4a2146a56eb099f59cd9c, type: 3}
   fadeDuration: 0.1
-  keyCode: 52
+  keyCode: 53
   hitSpriteObject: {fileID: 523209506}
 --- !u!212 &646879214
 SpriteRenderer:
@@ -1983,7 +1935,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f91271ce1a7df08439aa6a1626b38e8e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6e9f4ebfc4eddb242aca502aa5a86b2e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.3137255}
   m_FlipX: 0
   m_FlipY: 0
@@ -2103,6 +2055,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1304199375}
   - component: {fileID: 1304199376}
+  - component: {fileID: 1304199377}
+  - component: {fileID: 1304199378}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2137,6 +2091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f225de06e09114641a8bc47c58e44321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parser: {fileID: 1583279298}
   songStart:
     m_PersistentCalls:
       m_Calls:
@@ -2152,7 +2107,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 268878962}
+      - m_Target: {fileID: 1304199377}
         m_TargetAssemblyTypeName: AccurateTimeManager, Assembly-CSharp
         m_MethodName: OnSongStart
         m_Mode: 1
@@ -2169,9 +2124,66 @@ MonoBehaviour:
   notePreDelay: 0
   isPlaying: 0
   accurateMusicTime: 0
+  BPM: 130
   score: 0
   scoreText: {fileID: 1679628910}
-  accurateTimeManager: {fileID: 268878962}
+  accurateTimeManager: {fileID: 1304199377}
+--- !u!114 &1304199377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304199374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22565de4ca54ea145ace19486a9d4b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bpm: 110
+  audioSource: {fileID: 1000605774}
+  osuParser: {fileID: 1583279298}
+  sampledTime: 0
+--- !u!114 &1304199378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304199374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc165a544a34144483949f70420dc6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parser: {fileID: 1583279298}
+  accuracy: 0
+  timingWindow: 50
+  perfectMargin: 25
+  score: 0
+  _currentHitObject:
+    Raw: 
+    X: 0
+    Y: 0
+    Position: {x: 0, y: 0}
+    Time: 0
+    hitType: 0
+    EndTime: -1
+    HitSound: 0
+    HitSample:
+      NormalSet: 0
+      AdditionSet: 0
+      Index: 0
+      Volume: 0
+      Filename: 
+      Clip: {fileID: 0}
+    ColourHax: 0
+    ObjectParams: []
+    CurveType: 0
+    CurvePoints: []
+    Slides: -1
+    Length: 0
+    edgeSounds: 
 --- !u!1 &1327971427
 GameObject:
   m_ObjectHideFlags: 0
@@ -2269,7 +2281,7 @@ GameObject:
   - component: {fileID: 1408897464}
   - component: {fileID: 1408897467}
   m_Layer: 0
-  m_Name: Hit 8
+  m_Name: Hit 1
   m_TagString: Activator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2290,7 +2302,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1408897465}
   newSprite: {fileID: 21300000, guid: e914e51858c4a2146a56eb099f59cd9c, type: 3}
   fadeDuration: 0.1
-  keyCode: 56
+  keyCode: 49
   hitSpriteObject: {fileID: 1327971427}
 --- !u!212 &1408897465
 SpriteRenderer:
@@ -2671,8 +2683,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56075765d06876d4eb7fccbb157f0b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songChart: {fileID: 4283832814484123413, guid: e90d59bb0f8b8ec4a84f8eb822a7f69e, type: 3}
-  accurateTimeManager: {fileID: 268878962}
+  songChart: {fileID: 4283832814484123413, guid: 41175f464b3a0204993f3a3a0ef68b0b, type: 3}
+  accurateTimeManager: {fileID: 1304199377}
   musicSource: {fileID: 1000605774}
   trackTitleText: {fileID: 1672877119}
   artistText: {fileID: 207898184}
@@ -2681,6 +2693,29 @@ MonoBehaviour:
   bpm: 0
   hitObjects: []
   _hitObjectIndex: 0
+  currentObject:
+    Raw: 
+    X: 0
+    Y: 0
+    Position: {x: 0, y: 0}
+    Time: 0
+    hitType: 0
+    EndTime: -1
+    HitSound: 0
+    HitSample:
+      NormalSet: 0
+      AdditionSet: 0
+      Index: 0
+      Volume: 0
+      Filename: 
+      Clip: {fileID: 0}
+    ColourHax: 0
+    ObjectParams: []
+    CurveType: 0
+    CurvePoints: []
+    Slides: -1
+    Length: 0
+    edgeSounds: 
   noteType: 0
 --- !u!4 &1583279299
 Transform:
@@ -2756,8 +2791,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: TRACK TITLE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ce019398020fa32458ccef7ce672d566, type: 2}
+  m_sharedMaterial: {fileID: -8529713623459097665, guid: ce019398020fa32458ccef7ce672d566, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2787,7 +2822,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -2888,12 +2923,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score
-
-'
+  m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ce019398020fa32458ccef7ce672d566, type: 2}
+  m_sharedMaterial: {fileID: -8529713623459097665, guid: ce019398020fa32458ccef7ce672d566, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2980,7 +3013,7 @@ GameObject:
   - component: {fileID: 1896940059}
   - component: {fileID: 1896940062}
   m_Layer: 0
-  m_Name: Hit 7
+  m_Name: Hit 2
   m_TagString: Activator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3001,7 +3034,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1896940060}
   newSprite: {fileID: 21300000, guid: e914e51858c4a2146a56eb099f59cd9c, type: 3}
   fadeDuration: 0.1
-  keyCode: 55
+  keyCode: 50
   hitSpriteObject: {fileID: 253646392}
 --- !u!212 &1896940060
 SpriteRenderer:
@@ -3607,7 +3640,6 @@ SceneRoots:
   - {fileID: 1304199375}
   - {fileID: 519420032}
   - {fileID: 428148262}
-  - {fileID: 268878963}
   - {fileID: 1583279299}
   - {fileID: 1000605775}
   - {fileID: 2015442640}

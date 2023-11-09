@@ -20,7 +20,6 @@ public class NoteHit : MonoBehaviour
     {
         if (other.CompareTag("Activator"))
         {
-            Debug.Log("note missed");
             canBePressed = false;
         }
     }

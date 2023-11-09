@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e68eac58deb44134b862d3e752ad5439
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: f459a58b2481e14498f119096cfdbf56, type: 3}
+  useOverrides: 0
+  sourceClipMapping:
+  - originalFilename: audio.mp3
+    clip: {fileID: 8300000, guid: e03ec719c696f404a9eb7a010188cdc0, type: 3}
+  overrideClipMapping:
+  - originalFilename: audio.mp3
+    clip: {fileID: 8300000, guid: e03ec719c696f404a9eb7a010188cdc0, type: 3}
+  _audio: {instanceID: 0}

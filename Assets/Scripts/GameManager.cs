@@ -9,6 +9,7 @@ using UnityEngine.Serialization;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    [SerializeField] private OSUParser parser;
 
     public UnityEvent songStart;
     
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     public float accurateMusicTime;
 
+    public float BPM;
     public float score;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private AccurateTimeManager accurateTimeManager;
@@ -27,6 +29,11 @@ public class GameManager : MonoBehaviour
     
     void Awake()
     {
+        if (Instance != null)
+        {
+            Debug.LogError("Multiple singleton game manager. bad. Is singleton. should only be one.");
+            Destroy(gameObject);
+        }
         Instance = this;
         score = 0;
     }
@@ -49,11 +56,10 @@ public class GameManager : MonoBehaviour
         accurateMusicTime = accurateTimeManager.sampledTime;
         
         if (Input.GetKeyDown(KeyCode.Space) && !isPlaying)
-        { 
+        {
+            BPM = parser.bpm;
             songStart.Invoke();
             isPlaying = true;
         }
     }
-    
-
 }

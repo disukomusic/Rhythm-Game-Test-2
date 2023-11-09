@@ -27,6 +27,8 @@ public class OSUParser : MonoBehaviour
     [SerializeField] private OSUHitObject[] hitObjects;
     [SerializeField] private int _hitObjectIndex;
 
+    public OSUHitObject currentObject;
+
     public NoteSpawner.NoteType noteType;
 
     int GetRealLaneNumber(int osuNumber)
@@ -75,6 +77,7 @@ public class OSUParser : MonoBehaviour
             }
             
             NoteSpawner.Instance.SpawnNote(GetRealLaneNumber(hitObjects[_hitObjectIndex].X), noteType,hitObjects[_hitObjectIndex].Time, hitObjects[_hitObjectIndex].EndTime );
+            currentObject = hitObjects[_hitObjectIndex];
             _hitObjectIndex++;
         }
     }
