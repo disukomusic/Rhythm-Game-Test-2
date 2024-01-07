@@ -2157,33 +2157,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parser: {fileID: 1583279298}
+  noteSpawner: {fileID: 2015442639}
   accuracy: 0
   timingWindow: 50
   perfectMargin: 25
   score: 0
-  _currentHitObject:
-    Raw: 
-    X: 0
-    Y: 0
-    Position: {x: 0, y: 0}
-    Time: 0
-    hitType: 0
-    EndTime: -1
-    HitSound: 0
-    HitSample:
-      NormalSet: 0
-      AdditionSet: 0
-      Index: 0
-      Volume: 0
-      Filename: 
-      Clip: {fileID: 0}
-    ColourHax: 0
-    ObjectParams: []
-    CurveType: 0
-    CurvePoints: []
-    Slides: -1
-    Length: 0
-    edgeSounds: 
+  currentHitObjects: []
 --- !u!1 &1327971427
 GameObject:
   m_ObjectHideFlags: 0

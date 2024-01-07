@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using HDyar.OSUImporter;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -8,6 +9,7 @@ using UnityEngine.Serialization;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private OSUParser parser;
+    [SerializeField] private NoteSpawner noteSpawner;
     
     public float accuracy;
     public float timingWindow;
@@ -15,7 +17,7 @@ public class ScoreManager : MonoBehaviour
     public float score;
     
     
-    [SerializeField] private OSUHitObject _currentHitObject;
+    [SerializeField] private OSUHitObject[] currentHitObjects;
     private int _laneInput;
     private KeyCode[] inputs = 
         new []
@@ -29,25 +31,23 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
-        if (parser.currentObject != null)
-        {
-           _currentHitObject = parser.currentObject;
-           
-            if (_currentHitObject.EndTime == -1) //Normal notes have -1 end time
+        foreach (OSUHitObject hitObject in currentHitObjects)
+        { 
+            if (hitObject.EndTime == -1) //Normal notes have -1 end time
             {
-                if (Input.GetKeyDown(inputs[GetRealLaneNumber(_currentHitObject.X)]))
+                if (Input.GetKeyDown(inputs[GetRealLaneNumber(hitObject.X)]))
                 {
                     int inputDownTime = (int)GameManager.Instance.accurateMusicTime;
-                    int inputVariation = Mathf.Abs(_currentHitObject.Time - inputDownTime);
-                    
+                    int inputVariation = Mathf.Abs(hitObject.Time - inputDownTime);
+                
                     if (inputVariation  <= timingWindow)
                     {
-                        if (inputDownTime > _currentHitObject.Time && inputVariation > perfectMargin)
+                        if (inputDownTime > hitObject.Time && inputVariation > perfectMargin)
                         {
                             Debug.Log("input variation of " + inputVariation +" - note hit late");
                             AddScore(50);
                         }
-                        else if (inputDownTime < _currentHitObject.Time  && inputVariation > perfectMargin)
+                        else if (inputDownTime < hitObject.Time  && inputVariation > perfectMargin)
                         {
                             Debug.Log("input variation of " + inputVariation +" -note hit early");
                             AddScore(50);
@@ -57,7 +57,7 @@ public class ScoreManager : MonoBehaviour
                             Debug.Log("input variation of " + inputVariation +" -note hit perfectly");
                             AddScore(100);
                         }
-                        else if (GameManager.Instance.accurateMusicTime > _currentHitObject.Time)
+                        else if (GameManager.Instance.accurateMusicTime > hitObject.Time)
                         {
                             Debug.Log("note missed!!");
                             SFXManager.Instance.PlaySound(2);
@@ -67,13 +67,13 @@ public class ScoreManager : MonoBehaviour
             }
             else //only other note type would be hold note
             {
-                if (Input.GetKeyDown(inputs[GetRealLaneNumber(_currentHitObject.X)]))
+                if (Input.GetKeyDown(inputs[GetRealLaneNumber(hitObject.X)]))
                 {
                     isHeld = true;
                     holdRoutine = StartCoroutine(HeldButtonTick());
                 }
 
-                if (Input.GetKeyUp(inputs[GetRealLaneNumber(_currentHitObject.X)]))
+                if (Input.GetKeyUp(inputs[GetRealLaneNumber(hitObject.X)]))
                 {
                     isHeld = false;
                     if (holdRoutine != null)
@@ -81,8 +81,9 @@ public class ScoreManager : MonoBehaviour
                         StopCoroutine(holdRoutine);
                     }
                 }
-            } 
+            }   
         }
+        
     }
 
     IEnumerator HeldButtonTick()
