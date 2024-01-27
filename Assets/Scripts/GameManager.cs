@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     {
         accurateMusicTime = accurateTimeManager.sampledTime;
         
-        if (Input.GetKeyDown(KeyCode.Space) && !isPlaying)
+        if (Input.GetKeyDown(KeyCode.Alpha6) && !isPlaying)
         {
             BPM = parser.bpm;
             songStart.Invoke();

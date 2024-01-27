@@ -6,6 +6,15 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "com.hdyar.transitioneffects": {
+      "version": "https://github.com/hunterdyar/Unity-Transition-Effects.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.render-pipelines.universal": "12.0.0"
+      },
+      "hash": "90286aa036bb9b2fd885c297119196f30436b08a"
+    },
     "com.unity.burst": {
       "version": "1.8.11",
       "depth": 1,
@@ -148,6 +157,23 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "jp.keijiro.lasp": {
+      "version": "2.1.6",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.burst": "1.4.4",
+        "jp.keijiro.libsoundio": "1.0.4"
+      },
+      "url": "https://registry.npmjs.com"
+    },
+    "jp.keijiro.libsoundio": {
+      "version": "1.0.4",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://registry.npmjs.com"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
