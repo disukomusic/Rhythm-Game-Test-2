@@ -11,6 +11,7 @@ using UnityEditor;
 
 public class OSUParser : MonoBehaviour
 {
+    public PlayerSettings playerSettings;
     [SerializeField] private OSUBeatmap songChart;
     [SerializeField] private AccurateTimeManager accurateTimeManager;
     
@@ -39,6 +40,7 @@ public class OSUParser : MonoBehaviour
     private void Start()
     {
         musicSource.Stop();
+        songChart = playerSettings.SelectedSong;
         
         //get background image
         // if (songChart.Events[0] != null)

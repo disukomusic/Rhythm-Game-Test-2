@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     [SerializeField] private OSUParser parser;
 
+    public UnityEvent onSceneLoad;
+    public UnityEvent countDownStart;
     public UnityEvent songStart;
     
     public float noteSpeed;
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
     public float score;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private AccurateTimeManager accurateTimeManager;
+    
 
     //public SpriteRenderer backgroundImage;
     
@@ -42,6 +45,10 @@ public class GameManager : MonoBehaviour
     {
         notePreDelay = (circleRadius / noteSpeed) * 1000f;
         Debug.Log(notePreDelay);
+        onSceneLoad.Invoke();
+
+        BPM = parser.bpm;
+
     }
     
     public void AddScore(float scoreToAdd)
@@ -55,11 +62,36 @@ public class GameManager : MonoBehaviour
     {
         accurateMusicTime = accurateTimeManager.sampledTime;
         
-        if (Input.GetKeyDown(KeyCode.Alpha6) && !isPlaying)
+        if (Input.GetKeyDown(KeyCode.Alpha6) && !isPlaying )
         {
-            BPM = parser.bpm;
-            songStart.Invoke();
-            isPlaying = true;
+            StartCoroutine(StartSongWithCountdown());
         }
+    }
+
+
+    private IEnumerator StartSongWithCountdown()
+    {
+        float _beat = 60f/ BPM;
+        
+        yield return new WaitForSeconds(_beat);
+        SFXManager.Instance.PlaySound(1);
+        countDownStart.Invoke();
+        Debug.Log("3");
+        yield return new WaitForSeconds(_beat);
+        SFXManager.Instance.PlaySound(1);
+
+        Debug.Log("2");
+        yield return new WaitForSeconds(_beat);
+        SFXManager.Instance.PlaySound(1);
+
+        Debug.Log("1");
+        yield return new WaitForSeconds(_beat);
+        SFXManager.Instance.PlaySound(1);
+
+        Debug.Log("Start!");
+        
+        BPM = parser.bpm;
+        songStart.Invoke();
+        isPlaying = true;
     }
 }
