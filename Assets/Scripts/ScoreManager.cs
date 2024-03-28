@@ -6,6 +6,7 @@ using HDyar.OSUImporter;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+//todo: delete this class
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private OSUParser parser;
@@ -94,13 +95,13 @@ public class ScoreManager : MonoBehaviour
             yield return new WaitForSeconds((GameManager.Instance.BPM / 60f)/4);
         }
     }
-    int GetRealLaneNumber(int osuNumber)
+    public static int GetRealLaneNumber(int osuNumber)
     {
         return Mathf.FloorToInt(osuNumber / 64f);
     }
 
     void AddScore(int i)
     {
-        GameManager.Instance.AddScore(i);
+        //GameManager.Instance.AddScore(i);
     }
 }

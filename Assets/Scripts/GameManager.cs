@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using HDyar.OSUImporter;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,18 +22,21 @@ public class GameManager : MonoBehaviour
     public float notePreDelay;
     public bool isPlaying = false;
 
-    public float accurateMusicTime;
+    public float accurateMusicTime => accurateTimeManager.sampledTime;
+    public int msAccurateMusicTime => accurateTimeManager.msSampleTime;
 
     public float BPM;
     public float score;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private AccurateTimeManager accurateTimeManager;
-    
+    private Dictionary<int, List<ActiveHitObject>> hitsByLaneMap;
 
+    private HitSpriteController[] hitSpriteControllers;
     //public SpriteRenderer backgroundImage;
     
     void Awake()
     {
+        hitsByLaneMap = new Dictionary<int, List<ActiveHitObject>>();
         if (Instance != null)
         {
             Debug.LogError("Multiple singleton game manager. bad. Is singleton. should only be one.");
@@ -43,24 +48,29 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        hitSpriteControllers = GameObject.FindObjectsOfType<HitSpriteController>();
+        
         notePreDelay = (circleRadius / noteSpeed) * 1000f;
         Debug.Log(notePreDelay);
         onSceneLoad.Invoke();
 
         BPM = parser.bpm;
-
+        
     }
     
-    public void AddScore(float scoreToAdd)
+    public void UpdateScore()
     {
-        score += scoreToAdd;
+        score = 0;
+        foreach (var lane in hitSpriteControllers)
+        {
+            score += lane.Score;
+        }
         scoreText.text = score.ToString();
     }
     
     
     private void Update()
     {
-        accurateMusicTime = accurateTimeManager.sampledTime;
         
         if (Input.GetKeyDown(KeyCode.Alpha6) && !isPlaying )
         {
@@ -93,5 +103,20 @@ public class GameManager : MonoBehaviour
         BPM = parser.bpm;
         songStart.Invoke();
         isPlaying = true;
+    }
+
+    public List<ActiveHitObject> GetLaneHitObjects(int lane)
+    {
+        //lazy cache
+        if (hitsByLaneMap.ContainsKey(lane))
+        {
+            return hitsByLaneMap[lane];
+        }
+        else
+        {
+            var hitObjectsForLane = parser.activeHitObjects.Where(x=>lane == ScoreManager.GetRealLaneNumber(x.hitObject.X)).ToList();
+            hitsByLaneMap[lane] = hitObjectsForLane;
+            return hitObjectsForLane;
+        }
     }
 }

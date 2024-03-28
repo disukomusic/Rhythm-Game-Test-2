@@ -14,7 +14,7 @@ public class AccurateTimeManager : MonoBehaviour
     // [SerializeField] private Intervals[] intervals;
     [SerializeField] private OSUParser osuParser;
     public float sampledTime;
-
+    public int msSampleTime;
     private bool _isPlaying;
 
     private void Update()
@@ -23,6 +23,7 @@ public class AccurateTimeManager : MonoBehaviour
         {
             sampledTime = ((audioSource.timeSamples / (float)audioSource.clip.frequency));
             sampledTime *= 1000f;
+            msSampleTime = audioSource.timeSamples / audioSource.clip.frequency;
         }
     }
 

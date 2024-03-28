@@ -1,12 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using HDyar.OSUImporter;
 using UnityEngine;
-using UnityEngine.Serialization;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEditor;
 
 public class OSUParser : MonoBehaviour
@@ -23,8 +19,9 @@ public class OSUParser : MonoBehaviour
     public string songName;
     public string artistName;
     public float bpm = 110;
-    
 
+    public List<ActiveHitObject> activeHitObjects;
+    public OSUHitObject[] HitObjects => hitObjects;
     [SerializeField] private OSUHitObject[] hitObjects;
     [SerializeField] private int _hitObjectIndex;
 
@@ -52,6 +49,14 @@ public class OSUParser : MonoBehaviour
         // }
         
         hitObjects = songChart.HitObjects;
+        activeHitObjects = new List<ActiveHitObject>();
+        // foreach (var ho in hitObjects)
+        // {
+        //     activeHitObjects.Add(new ActiveHitObject(ho));
+        // }
+        //this does the foreach but fancier with LINQ
+        activeHitObjects = hitObjects.Select(x => new ActiveHitObject(x)).OrderBy(x=>x.Time).ToList();
+        
         songName = songChart.Metadata.Title;
         artistName = songChart.Metadata.Artist;
         musicSource.clip = songChart.General.Clip;

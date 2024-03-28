@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class HitSpriteController : MonoBehaviour {
     public SpriteRenderer spriteRenderer;
@@ -15,7 +18,17 @@ public class HitSpriteController : MonoBehaviour {
     private NoteHit _desiredNote;
     private Note _desiredNoteObject;
 
-    void Awake() {
+    private PlayerHitData _currentlyPressingHit;
+    //wc
+    private List<PlayerHitData> _lanePresses;
+
+    public float Score => score;
+    private float score;
+    //todo: not manually write this.
+    public int Lane;
+    void Awake()
+    {
+        _lanePresses = new List<PlayerHitData>();
         _initialSprite = spriteRenderer.sprite;
         _hitSpriteRenderer = hitSpriteObject.GetComponent<SpriteRenderer>();
     }
@@ -26,31 +39,106 @@ public class HitSpriteController : MonoBehaviour {
             StartCoroutine(SwitchAndFade());
         }
 
-        // if (_desiredNote != null)
-        // {
-        //     if (_desiredNote.isHoldNote)
-        //     {
-        //         if (_desiredNoteObject.isHoldable)
-        //         {
-        //             if (Input.GetKey(keyCode))
-        //             {
-        //                 GameManager.Instance.AddScore(1f);
-        //             }
-        //         }
-        //     }
-        //     else
-        //     {
-        //         if (Input.GetKeyDown(keyCode))
-        //         {
-        //             if (_desiredNote.canBePressed)
-        //             {
-        //                 GameManager.Instance.AddScore(100f);
-        //                 SFXManager.Instance.PlaySound(1);
-        //                 _desiredNote.gameObject.SetActive(false);
-        //             }
-        //         }
-        //     }
-        // }
+        if (Input.GetKeyDown(keyCode))
+        {
+            // if (_desiredNote.canBePressed)
+            // {
+            //     GameManager.Instance.AddScore(100f);
+            //     SFXManager.Instance.PlaySound(1);
+            //     _desiredNote.gameObject.SetActive(false);
+            // }
+
+            _currentlyPressingHit = new PlayerHitData();
+            _currentlyPressingHit.pressTime = GameManager.Instance.msAccurateMusicTime;
+        }
+        if (Input.GetKeyUp(keyCode))
+        {
+            // if (_desiredNote.canBePressed)
+            // {
+            //     GameManager.Instance.AddScore(100f);
+            //     SFXManager.Instance.PlaySound(1);
+            //     _desiredNote.gameObject.SetActive(false);
+            // }
+            _currentlyPressingHit.releaseTime = GameManager.Instance.msAccurateMusicTime;
+            _lanePresses.Add(_currentlyPressingHit);
+            _currentlyPressingHit = null;
+            score = RecalculateLaneScore();
+            GameManager.Instance.UpdateScore();
+        }
+        
+    }
+
+    private float RecalculateLaneScore()
+    {
+        float laneScore = 0;
+        var hits = GameManager.Instance.GetLaneHitObjects(Lane);
+        foreach (var press in (_lanePresses))
+        {
+            //we already figured this one out
+            if (press.hitObject != null)
+            {
+                laneScore += press.GetScoreForPress();
+                continue;
+            }
+
+            //we have not let go yet, also we must be caught up with the present so lets just end now. No score till you let go.
+            if (press.releaseTime < press.pressTime)
+            {
+                return laneScore;
+            }
+            
+            //search for hit from hits.
+            foreach (var hit in hits)
+            {
+                if (IsValidHitForPress(hit, press))
+                {
+                    Debug.Log("pressed gud");
+                    hit.press = press;
+                    press.hitObject = hit;
+                    laneScore += press.GetScoreForPress();
+                    continue;
+                }
+            }
+
+            if (press.hitObject == null)
+            {
+                //no valid hit. :(
+                Debug.Log("no hit for press");
+                //laneScore -= 500;
+            }
+        }
+
+        foreach (var noPressHits in hits.Where(x=>x.hitObject == null))
+        {
+            Debug.Log("should have hit but no press");
+
+            //laneScore -= 1000;
+        }
+        
+        return laneScore;
+    }
+
+    private bool IsValidHitForPress(ActiveHitObject hit, PlayerHitData press)
+    {
+        int threshold = 1000;
+        int delta = Mathf.Abs(press.pressTime - hit.Time);
+        //todo: if it's a bad lane
+        //todo make this static 
+        
+        
+        if (press.pressTime > hit.Time && press.pressTime < hit.hitObject.EndTime)
+        {
+            return true;
+        }
+        
+        if (delta > threshold)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
