@@ -29,13 +29,14 @@ public class MenuOption : MonoBehaviour
     {
         if (CurrentlySelectedMenuObject == this)
         {
-            if (scene.Length>0)
+            if (scene.Length > 0)
             {
                 SceneManager.LoadScene(scene);
             }
             else
             {
-                Debug.LogError("No Scene for the selected menu option!");
+                Debug.Log("No Scene for the selected menu option!");
+                AlertManager.Instance.ShowAlert("Not Implemented (yet)");
             }
         }
         else

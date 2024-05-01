@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using HDyar.OSUImporter;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +22,7 @@ public class GameManager : MonoBehaviour
     public float noteSpeed;
     public float circleRadius;
     public float notePreDelay;
+    public float offset;
     public bool isPlaying = false;
 
     public float accurateMusicTime => accurateTimeManager.sampledTime;
@@ -31,7 +34,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AccurateTimeManager accurateTimeManager;
     private Dictionary<int, List<ActiveHitObject>> hitsByLaneMap;
 
-    private HitSpriteController[] hitSpriteControllers;
+    [SerializeField] private HitSpriteController[] hitSpriteControllers;
     //public SpriteRenderer backgroundImage;
     
     void Awake()
@@ -50,7 +53,7 @@ public class GameManager : MonoBehaviour
     {
         hitSpriteControllers = GameObject.FindObjectsOfType<HitSpriteController>();
         
-        notePreDelay = (circleRadius / noteSpeed) * 1000f;
+        notePreDelay = ((circleRadius / noteSpeed) * 1000f) + offset;
         Debug.Log(notePreDelay);
         onSceneLoad.Invoke();
 
@@ -71,12 +74,14 @@ public class GameManager : MonoBehaviour
     
     private void Update()
     {
-        
-        if (Input.GetKeyDown(KeyCode.Alpha6) && !isPlaying )
+        if (Input.GetKeyDown(KeyCode.Alpha4) && !isPlaying )
         {
             StartCoroutine(StartSongWithCountdown());
         }
+
     }
+    
+    
 
 
     private IEnumerator StartSongWithCountdown()
@@ -118,5 +123,10 @@ public class GameManager : MonoBehaviour
             hitsByLaneMap[lane] = hitObjectsForLane;
             return hitObjectsForLane;
         }
+    }
+
+    public void OnSongEnd()
+    {
+        SceneManager.LoadScene("Main Menu");
     }
 }

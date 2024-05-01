@@ -32,58 +32,58 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
-        foreach (OSUHitObject hitObject in currentHitObjects)
-        { 
-            if (hitObject.EndTime == -1) //Normal notes have -1 end time
-            {
-                if (Input.GetKeyDown(inputs[GetRealLaneNumber(hitObject.X)]))
-                {
-                    int inputDownTime = (int)GameManager.Instance.accurateMusicTime;
-                    int inputVariation = Mathf.Abs(hitObject.Time - inputDownTime);
-                
-                    if (inputVariation  <= timingWindow)
-                    {
-                        if (inputDownTime > hitObject.Time && inputVariation > perfectMargin)
-                        {
-                            Debug.Log("input variation of " + inputVariation +" - note hit late");
-                            AddScore(50);
-                        }
-                        else if (inputDownTime < hitObject.Time  && inputVariation > perfectMargin)
-                        {
-                            Debug.Log("input variation of " + inputVariation +" -note hit early");
-                            AddScore(50);
-                        }
-                        else if (inputVariation <= perfectMargin)
-                        {
-                            Debug.Log("input variation of " + inputVariation +" -note hit perfectly");
-                            AddScore(100);
-                        }
-                        else if (GameManager.Instance.accurateMusicTime > hitObject.Time)
-                        {
-                            Debug.Log("note missed!!");
-                            SFXManager.Instance.PlaySound(2);
-                        }
-                    }
-                }
-            }
-            else //only other note type would be hold note
-            {
-                if (Input.GetKeyDown(inputs[GetRealLaneNumber(hitObject.X)]))
-                {
-                    isHeld = true;
-                    holdRoutine = StartCoroutine(HeldButtonTick());
-                }
-
-                if (Input.GetKeyUp(inputs[GetRealLaneNumber(hitObject.X)]))
-                {
-                    isHeld = false;
-                    if (holdRoutine != null)
-                    {
-                        StopCoroutine(holdRoutine);
-                    }
-                }
-            }   
-        }
+        // foreach (OSUHitObject hitObject in currentHitObjects)
+        // { 
+        //     if (hitObject.EndTime == -1) //Normal notes have -1 end time
+        //     {
+        //         if (Input.GetKeyDown(inputs[GetRealLaneNumber(hitObject.X)]))
+        //         {
+        //             int inputDownTime = (int)GameManager.Instance.accurateMusicTime;
+        //             int inputVariation = Mathf.Abs(hitObject.Time - inputDownTime);
+        //         
+        //             if (inputVariation  <= timingWindow)
+        //             {
+        //                 if (inputDownTime > hitObject.Time && inputVariation > perfectMargin)
+        //                 {
+        //                     Debug.Log("input variation of " + inputVariation +" - note hit late");
+        //                     AddScore(25);
+        //                 }
+        //                 else if (inputDownTime < hitObject.Time  && inputVariation > perfectMargin)
+        //                 {
+        //                     Debug.Log("input variation of " + inputVariation +" -note hit early");
+        //                     AddScore(50);
+        //                 }
+        //                 else if (inputVariation <= perfectMargin)
+        //                 {
+        //                     Debug.Log("input variation of " + inputVariation +" -note hit perfectly");
+        //                     AddScore(100);
+        //                 }
+        //                 else if (GameManager.Instance.accurateMusicTime > hitObject.Time)
+        //                 {
+        //                     Debug.Log("note missed!!");
+        //                     SFXManager.Instance.PlaySound(2);
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     else //only other note type would be hold note
+        //     {
+        //         if (Input.GetKeyDown(inputs[GetRealLaneNumber(hitObject.X)]))
+        //         {
+        //             isHeld = true;
+        //             holdRoutine = StartCoroutine(HeldButtonTick());
+        //         }
+        //
+        //         if (Input.GetKeyUp(inputs[GetRealLaneNumber(hitObject.X)]))
+        //         {
+        //             isHeld = false;
+        //             if (holdRoutine != null)
+        //             {
+        //                 StopCoroutine(holdRoutine);
+        //             }
+        //         }
+        //     }   
+        // }
         
     }
 

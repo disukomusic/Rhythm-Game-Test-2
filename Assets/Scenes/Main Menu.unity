@@ -445,6 +445,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &285983942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 285983944}
+  - component: {fileID: 285983943}
+  m_Layer: 0
+  m_Name: AlertManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &285983943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285983942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9877306c9a9babe409ba52733b3e2a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alertTextPrefab: {fileID: 5667664918739423952, guid: e059292fa701cc64499622b8a33a45df, type: 3}
+--- !u!4 &285983944
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285983942}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.05469627, y: 2.207067, z: -6.2842073}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &529340073
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,7 +1043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c4ed31960265bd4fa8c4706defaaed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: Song Selector
+  scene: GameScene
   desiredKey: 0
   confirmSprite: {fileID: 1502234529}
 --- !u!58 &1198583987
@@ -1317,7 +1362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c4ed31960265bd4fa8c4706defaaed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: 
+  scene: GameScene
   desiredKey: 0
   confirmSprite: {fileID: 831197042}
 --- !u!58 &1404683127
@@ -1382,7 +1427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c4ed31960265bd4fa8c4706defaaed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: 
+  scene: GameScene
   desiredKey: 0
   confirmSprite: {fileID: 529340073}
 --- !u!58 &1456156250
@@ -1934,7 +1979,7 @@ MonoBehaviour:
   timeToBeat: 0.05
   restSmoothTime: 2
   beatScale: {x: 0.9, y: 0.9, z: 0.9}
-  restScale: {x: 0.85, y: 0.85, z: 0.85}
+  restScale: {x: 0.8, y: 0.8, z: 0.8}
 --- !u!1 &1954198316
 GameObject:
   m_ObjectHideFlags: 0
@@ -2012,7 +2057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c4ed31960265bd4fa8c4706defaaed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: 
+  scene: GameScene
   desiredKey: 0
   confirmSprite: {fileID: 2071105141}
 --- !u!58 &1965288098

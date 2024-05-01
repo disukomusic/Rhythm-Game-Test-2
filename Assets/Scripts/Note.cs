@@ -89,7 +89,6 @@ public class Note : MonoBehaviour
             {
                 if (Vector3.Distance(transform.position, _missedTargetPosition) < 0.01f)
                 {
-                    Debug.Log("note missed");
                     gameObject.SetActive(false);
                 } 
             }

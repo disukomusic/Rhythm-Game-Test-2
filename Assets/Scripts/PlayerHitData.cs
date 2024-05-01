@@ -17,7 +17,6 @@ public class PlayerHitData
             //if > startTime && <songEndTime
             return Mathf.Abs(releaseTime - pressTime) * 2;
         }
-
-        return Mathf.Abs(hitObject.Time - pressTime);
+        return Mathf.Abs(releaseTime - pressTime);
     }
 }

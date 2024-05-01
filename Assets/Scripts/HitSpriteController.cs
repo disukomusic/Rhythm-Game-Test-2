@@ -19,8 +19,7 @@ public class HitSpriteController : MonoBehaviour {
     private Note _desiredNoteObject;
 
     private PlayerHitData _currentlyPressingHit;
-    //wc
-    private List<PlayerHitData> _lanePresses;
+    public List<PlayerHitData> _lanePresses;
 
     public float Score => score;
     private float score;
@@ -43,7 +42,7 @@ public class HitSpriteController : MonoBehaviour {
         {
             // if (_desiredNote.canBePressed)
             // {
-            //     GameManager.Instance.AddScore(100f);
+            //     //GameManager.Instance.AddScore(100f);
             //     SFXManager.Instance.PlaySound(1);
             //     _desiredNote.gameObject.SetActive(false);
             // }
@@ -55,7 +54,7 @@ public class HitSpriteController : MonoBehaviour {
         {
             // if (_desiredNote.canBePressed)
             // {
-            //     GameManager.Instance.AddScore(100f);
+            //     //GameManager.Instance.AddScore(100f);
             //     SFXManager.Instance.PlaySound(1);
             //     _desiredNote.gameObject.SetActive(false);
             // }
@@ -78,6 +77,8 @@ public class HitSpriteController : MonoBehaviour {
             if (press.hitObject != null)
             {
                 laneScore += press.GetScoreForPress();
+                //SFXManager.Instance.PlaySound(1);
+                //AlertManager.Instance.ShowAlert("Nice!");
                 continue;
             }
 
@@ -92,7 +93,9 @@ public class HitSpriteController : MonoBehaviour {
             {
                 if (IsValidHitForPress(hit, press))
                 {
-                    Debug.Log("pressed gud");
+                    //SFXManager.Instance.PlaySound(1);
+                    //AlertManager.Instance.ShowAlert("Nice!");
+
                     hit.press = press;
                     press.hitObject = hit;
                     laneScore += press.GetScoreForPress();
@@ -103,18 +106,19 @@ public class HitSpriteController : MonoBehaviour {
             if (press.hitObject == null)
             {
                 //no valid hit. :(
-                Debug.Log("no hit for press");
+
                 //laneScore -= 500;
             }
         }
 
         foreach (var noPressHits in hits.Where(x=>x.hitObject == null))
         {
-            Debug.Log("should have hit but no press");
+            Debug.Log("miss");
 
             //laneScore -= 1000;
         }
-        
+        //Debug.Log(gameObject.name + " has a score of" + laneScore);
+
         return laneScore;
     }
 
@@ -126,8 +130,14 @@ public class HitSpriteController : MonoBehaviour {
         //todo make this static 
         
         
-        if (press.pressTime > hit.Time && press.pressTime < hit.hitObject.EndTime)
+        // if (press.pressTime > hit.Time && press.pressTime < hit.hitObject.Time) //normal notes have an end time of -1 so press time will ALWAYS be greater than 
+        // {
+        //     return true;
+        // }
+
+        if (Mathf.Abs(press.pressTime - hit.Time) < threshold)
         {
+            Debug.Log("note hit, off by" + delta);
             return true;
         }
         
@@ -141,17 +151,17 @@ public class HitSpriteController : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Note"))
-        {
-            _desiredNote = other.GetComponent<NoteHit>();
-           _desiredNoteObject = other.GetComponent<Note>();
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.CompareTag("Note"))
+    //     {
+    //         _desiredNote = other.GetComponent<NoteHit>();
+    //        _desiredNoteObject = other.GetComponent<Note>();
+    //     }
+    // }
 
     IEnumerator SwitchAndFade() 
-    {
+    {   
         spriteRenderer.sprite = newSprite;
 
         float timer = 0f;
